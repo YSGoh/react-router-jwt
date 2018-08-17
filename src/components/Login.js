@@ -26,13 +26,20 @@ class Login extends Component {
     //   password: this.state.password,
     // };
 
-    axios.post('http://192.168.0.194:8000/api/v1/users/', { username: this.state.username, password: this.state.password }, {
-      crossdomain: true,
-    })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-      });
+    axios.post('http://localhost:8000/api/v1/users/',
+      {
+        username: this.state.username,
+        password: this.state.password,
+      },
+      {
+        crossdomain: true,
+      },
+    ).then((res) => {
+      console.log(res);
+      console.log(res.data);
+      localStorage.setItem('Token', res.data.auth_token);
+      localStorage.setItem('uid', res.data.id);
+    });
     // .catch(function(error){
     //   if (error.response) {
     //     console.log(error.response.headers);

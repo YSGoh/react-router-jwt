@@ -32,7 +32,7 @@
         "required": {
             "some": [ "nesting", "id" ]
         },
-        "allowChildren": false
+        "allowChildren": true
     }],
       "react/destructuring-assignment": 1,
       "implicit-arrow-linebreak": 1
