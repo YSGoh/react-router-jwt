@@ -6,17 +6,22 @@ export default class UserProfile extends React.Component {
     super(props);
     this.state = {
       username: [],
+      id: [],
     };
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8000/api/v1/users/:580d7632-91ae-4f01-8d6b-3263499abfdd')
+    const token = localStorage.getItem('Token');
+
+    axios.get('http://localhost:8000/api/v1/users/4db1f823-2a5f-448e-8a70-ac33c6e31f03/', {
+      headers: { Authorization: 'Token ' + token },
+    })
       .then((res) => {
         console.log(res);
         console.log(res.data);
-        const username = res.data;
         this.setState({
-          username,
+          username: res.data.username,
+          id: res.data.id,
         });
       });
   }
@@ -25,6 +30,8 @@ export default class UserProfile extends React.Component {
     return (
       <div>
         {this.state.username}
+        <br />
+        {this.state.id}
       </div>
     );
   }

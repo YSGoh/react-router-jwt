@@ -22,6 +22,7 @@
       "import/extensions": 0,
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "react/prop-types": 0,
+      "prefer-template": 0,
       "jsx-a11y/anchor-is-valid": [ 0, {
         "components": [ "Link" ],
         "specialLink": [ "hrefLeft", "hrefRight" ],
