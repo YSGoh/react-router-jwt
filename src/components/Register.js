@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -26,21 +26,23 @@ class Login extends Component {
     //   password: this.state.password,
     // };
 
-    axios.post('http://192.168.0.194:8000/api/v1/users/', { username: this.state.username, password: this.state.password }, {
-      crossdomain: true,
+    axios.post('http://localhost:8000/api/v1/users/',
+      {
+        username: this.state.username,
+        password: this.state.password,
+      },
+      {
+        crossdomain: true,
+      },
+    ).then((res) => {
+      console.log(res);
+      console.log(res.data);
+      localStorage.setItem('Token', res.data.auth_token);
+      localStorage.setItem('uid', res.data.id);
     })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
+      .catch((error) => {
+        console.log(error.response.data);
       });
-    // .catch(function(error){
-    //   if (error.response) {
-    //     console.log(error.response.headers);
-    //   }
-    //   else {
-    //     console.log(error.message);
-    //   }
-    // }
   }
 
   render() {
@@ -64,4 +66,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
