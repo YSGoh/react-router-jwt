@@ -31,6 +31,9 @@ class Register extends Component {
         username: this.state.username,
         password: this.state.password,
       },
+      {
+        crossdomain: true,
+      },
     ).then((res) => {
       console.log(res);
       console.log(res.data);

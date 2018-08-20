@@ -12,18 +12,23 @@ export default class UserProfile extends React.Component {
 
   componentDidMount() {
     const token = localStorage.getItem('Token');
+    const uid = localStorage.getItem('uid');
 
-    axios.get('http://localhost:8000/api/v1/users/4db1f823-2a5f-448e-8a70-ac33c6e31f03/', {
-      headers: { Authorization: 'Token ' + token },
-    })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        this.setState({
-          username: res.data.username,
-          id: res.data.id,
-        });
+    axios.get('http://localhost:8000/api/v1/users/' + uid + '/',
+      {
+        headers: { Authorization: 'Token ' + token },
+      },
+      {
+        crossdomain: true,
+      },
+    ).then((res) => {
+      console.log(res);
+      console.log(res.data);
+      this.setState({
+        username: res.data.username,
+        id: res.data.id,
       });
+    });
   }
 
   render() {
